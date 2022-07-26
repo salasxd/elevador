@@ -1,6 +1,6 @@
 # Elevador Plugin
 
-### Colocar los elevadores en las mismas coordenadas X, Y
+### Colocar los elevadores en las mismas coordenadas X, Z
 
 ##### Saltar para subir al siguiente elevador
 ##### Agacharse para bajar al siguiente elevador
