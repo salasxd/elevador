@@ -20,7 +20,7 @@ events.playerJump.on(ev => {
 
     if(ev.player.isPlayer()){
         if(Crying.getName() == "minecraft:crying_obsidian"){
-            if(Frame.getName() == "minecraft:frame"){
+            if(Frame.getName() == "minecraft:frame" || Frame.getName() == "minecraft:glow_frame"){
                 const frameActor = region.getBlockEntity(posFrame)!;
                 if(frameActor.save().Item.Name != undefined){
                     if(frameActor.save().Item.Name == "minecraft:amethyst_shard"){
@@ -43,12 +43,12 @@ events.entitySneak.on(ev => {
 
     if(ev.entity.isPlayer() && ev.isSneaking && !ev.entity.hasTag("elevador_down")){
         if(Crying.getName() == "minecraft:crying_obsidian"){
-            if(Frame.getName() == "minecraft:frame"){
+            if(Frame.getName() == "minecraft:frame" || Frame.getName() == "minecraft:glow_frame"){
                 const frameActor = region.getBlockEntity(posFrame)!;
                 if(frameActor.save().Item.Name != undefined){
                     if(frameActor.save().Item.Name == "minecraft:amethyst_shard"){
                         //ev.entity.sendActionbar("DOWN!!");
-                        //ev.entity.setSneaking(false);
+                        ev.entity.setSneaking(false);
                         ev.entity.addTag("elevador_down");
                         setTimeout(function(){
                             ev.entity.removeTag("elevador_down");
@@ -74,7 +74,7 @@ async function getTeleport(player: Player, region: BlockSource, type: Type){
             const Frame = region.getBlock(posFrame);
 
             if(Crying.getName() == "minecraft:crying_obsidian"){
-                if(Frame.getName() == "minecraft:frame"){
+                if(Frame.getName() == "minecraft:frame" || Frame.getName() == "minecraft:glow_frame"){
                     const frameActor = region.getBlockEntity(posFrame)!;
                     if(frameActor.save().Item.Name == "minecraft:amethyst_shard"){
                         player.teleport(Vec3.create(pos.x, Math.floor(i)+1, pos.z),player.getDimensionId(), player.getFeetPos());

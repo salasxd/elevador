@@ -1,6 +1,6 @@
 import { events } from "bdsx/event";
 
-const version = "v1.0.0";
+const version = "v1.0.1";
 
 console.log('[Elevador] Iniciando'.magenta);
 // before BDS launching
