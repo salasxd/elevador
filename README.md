@@ -1,12 +1,12 @@
 # Elevador Plugin
 
-### Colocar los elevadores en las mismas coordenadas X, Z
+### Place the blocks at the same X,Z coordinates
 
-##### Saltar para subir al siguiente elevador
-##### Agacharse para bajar al siguiente elevador
+##### jump to climb
+##### bend down to go down
 
 
-## _Ejemplo de elevador_
+## _elevator example_
 
 [![N|Solid](https://raw.githubusercontent.com/salasxd/elevador/main/img.png)](https://nodesource.com/products/nsolid)
 
@@ -14,4 +14,4 @@
 
 MIT
 
-**Diviertete**
+**Have fun**

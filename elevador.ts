@@ -22,7 +22,7 @@ events.playerJump.on(ev => {
         if(Crying.getName() == "minecraft:crying_obsidian"){
             if(Frame.getName() == "minecraft:frame" || Frame.getName() == "minecraft:glow_frame"){
                 const frameActor = region.getBlockEntity(posFrame)!;
-                if(frameActor.save().Item.Name != undefined){
+                if(frameActor.save().Item){
                     if(frameActor.save().Item.Name == "minecraft:amethyst_shard"){
                         //ev.player.sendActionbar("UP!!");
                         getTeleport(ev.player,region,Type.up);
@@ -45,7 +45,7 @@ events.entitySneak.on(ev => {
         if(Crying.getName() == "minecraft:crying_obsidian"){
             if(Frame.getName() == "minecraft:frame" || Frame.getName() == "minecraft:glow_frame"){
                 const frameActor = region.getBlockEntity(posFrame)!;
-                if(frameActor.save().Item.Name != undefined){
+                if(frameActor.save().Item){
                     if(frameActor.save().Item.Name == "minecraft:amethyst_shard"){
                         //ev.entity.sendActionbar("DOWN!!");
                         ev.entity.setSneaking(false);
@@ -77,7 +77,7 @@ async function getTeleport(player: Player, region: BlockSource, type: Type){
                 if(Frame.getName() == "minecraft:frame" || Frame.getName() == "minecraft:glow_frame"){
                     const frameActor = region.getBlockEntity(posFrame)!;
                     if(frameActor.save().Item.Name == "minecraft:amethyst_shard"){
-                        player.teleport(Vec3.create(pos.x, Math.floor(i)+1, pos.z),player.getDimensionId(), player.getFeetPos());
+                        player.teleport(Vec3.create(pos.x, Math.floor(i)+1, pos.z),player.getDimensionId(),Vec3.create(player.getRotation().x,1,player.getRotation().y));
                         for (const _player of bedrockServer.serverInstance.getPlayers()) {
                             if(_player.getDimensionId() == player.getDimensionId()){
                                 _player.playSound("block.composter.empty", {x:Math.floor(pos.x),y:Math.floor(pos.y), z:Math.floor(pos.z)},100,0.5)
@@ -101,7 +101,7 @@ async function getTeleport(player: Player, region: BlockSource, type: Type){
                 if(Frame.getName() == "minecraft:frame"){
                     const frameActor = region.getBlockEntity(posFrame)!;
                     if(frameActor.save().Item.Name == "minecraft:amethyst_shard"){
-                        player.teleport(Vec3.create(pos.x, Math.floor(i)+1, pos.z),player.getDimensionId(), player.getFeetPos());
+                        player.teleport(Vec3.create(pos.x, Math.floor(i)+1, pos.z),player.getDimensionId(),Vec3.create(player.getRotation().x,1,player.getRotation().y));
                         for (const _player of bedrockServer.serverInstance.getPlayers()) {
                             if(_player.getDimensionId() == player.getDimensionId()){
                                 _player.playSound("block.composter.empty", {x:Math.floor(pos.x),y:Math.floor(pos.y), z:Math.floor(pos.z)},100,0.5)
