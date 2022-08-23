@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const event_1 = require("bdsx/event");
-const version = "v1.0.1";
+const version = "v1.1.0";
 console.log('[Elevador] Iniciando'.magenta);
 // before BDS launching
 event_1.events.serverOpen.on(() => {
