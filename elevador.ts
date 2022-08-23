@@ -15,8 +15,8 @@ events.playerJump.on(ev => {
     const pos = ev.player.getPosition();
     const posCrying = BlockPos.create(Math.floor(pos.x), Math.floor(pos.y)-2, Math.floor(pos.z));
     const posFrame = BlockPos.create(Math.floor(pos.x), Math.floor(pos.y)-1, Math.floor(pos.z));
-    const Crying = region.getBlock(posCrying);
-    const Frame = region.getBlock(posFrame);
+    const Crying = region.getBlock(posCrying)!;
+    const Frame = region.getBlock(posFrame)!;
 
     if(ev.player.isPlayer()){
         if(Crying.getName() == "minecraft:crying_obsidian"){
@@ -38,8 +38,8 @@ events.entitySneak.on(ev => {
     const pos = ev.entity.getPosition();
     const posCrying = BlockPos.create(Math.floor(pos.x), Math.floor(pos.y)-2, Math.floor(pos.z));
     const posFrame = BlockPos.create(Math.floor(pos.x), Math.floor(pos.y)-1, Math.floor(pos.z));
-    const Crying = region.getBlock(posCrying);
-    const Frame = region.getBlock(posFrame);
+    const Crying = region.getBlock(posCrying)!;
+    const Frame = region.getBlock(posFrame)!;
 
     if(ev.entity.isPlayer() && ev.isSneaking && !ev.entity.hasTag("elevador_down")){
         if(Crying.getName() == "minecraft:crying_obsidian"){
@@ -70,21 +70,23 @@ async function getTeleport(player: Player, region: BlockSource, type: Type){
         for(let i=Math.floor(pos.y+3);i<322;i++){
             const posCrying = BlockPos.create(Math.floor(pos.x), Math.floor(i)-2, Math.floor(pos.z));
             const posFrame = BlockPos.create(Math.floor(pos.x), Math.floor(i)-1, Math.floor(pos.z));
-            const Crying = region.getBlock(posCrying);
-            const Frame = region.getBlock(posFrame);
+            const Crying = region.getBlock(posCrying)!;
+            const Frame = region.getBlock(posFrame)!;
 
             if(Crying.getName() == "minecraft:crying_obsidian"){
                 if(Frame.getName() == "minecraft:frame" || Frame.getName() == "minecraft:glow_frame"){
                     const frameActor = region.getBlockEntity(posFrame)!;
-                    if(frameActor.save().Item.Name == "minecraft:amethyst_shard"){
-                        player.teleport(Vec3.create(pos.x, Math.floor(i)+1, pos.z),player.getDimensionId(),Vec3.create(player.getRotation().x,1,player.getRotation().y));
-                        for (const _player of bedrockServer.serverInstance.getPlayers()) {
-                            if(_player.getDimensionId() == player.getDimensionId()){
-                                _player.playSound("block.composter.empty", {x:Math.floor(pos.x),y:Math.floor(pos.y), z:Math.floor(pos.z)},100,0.5)
-                                _player.playSound("block.composter.empty", {x:Math.floor(pos.x),y:Math.floor(i), z:Math.floor(pos.z)},100,0.5)
+                    if(frameActor.save().Item){
+                        if(frameActor.save().Item.Name == "minecraft:amethyst_shard"){
+                            player.teleport(Vec3.create(pos.x, Math.floor(i)+1, pos.z),player.getDimensionId(),Vec3.create(player.getRotation().x,1,player.getRotation().y));
+                            for (const _player of bedrockServer.serverInstance.getPlayers()) {
+                                if(_player.getDimensionId() == player.getDimensionId()){
+                                    _player.playSound("block.composter.empty", {x:Math.floor(pos.x),y:Math.floor(pos.y), z:Math.floor(pos.z)},100,0.5)
+                                    _player.playSound("block.composter.empty", {x:Math.floor(pos.x),y:Math.floor(i), z:Math.floor(pos.z)},100,0.5)
+                                }
                             }
+                            break;
                         }
-                        break;
                     }
                 }
             }
@@ -94,21 +96,23 @@ async function getTeleport(player: Player, region: BlockSource, type: Type){
         for(let i=Math.floor(pos.y-3);i>-64;i--){
             const posCrying = BlockPos.create(Math.floor(pos.x), Math.floor(i)-2, Math.floor(pos.z));
             const posFrame = BlockPos.create(Math.floor(pos.x), Math.floor(i)-1, Math.floor(pos.z));
-            const Crying = region.getBlock(posCrying);
-            const Frame = region.getBlock(posFrame);
+            const Crying = region.getBlock(posCrying)!;
+            const Frame = region.getBlock(posFrame)!;
 
             if(Crying.getName() == "minecraft:crying_obsidian"){
                 if(Frame.getName() == "minecraft:frame"){
                     const frameActor = region.getBlockEntity(posFrame)!;
-                    if(frameActor.save().Item.Name == "minecraft:amethyst_shard"){
-                        player.teleport(Vec3.create(pos.x, Math.floor(i)+1, pos.z),player.getDimensionId(),Vec3.create(player.getRotation().x,1,player.getRotation().y));
-                        for (const _player of bedrockServer.serverInstance.getPlayers()) {
-                            if(_player.getDimensionId() == player.getDimensionId()){
-                                _player.playSound("block.composter.empty", {x:Math.floor(pos.x),y:Math.floor(pos.y), z:Math.floor(pos.z)},100,0.5)
-                                _player.playSound("block.composter.empty", {x:Math.floor(pos.x),y:Math.floor(i), z:Math.floor(pos.z)},100,0.5)
+                    if(frameActor.save().Item){
+                        if(frameActor.save().Item.Name == "minecraft:amethyst_shard"){
+                            player.teleport(Vec3.create(pos.x, Math.floor(i)+1, pos.z),player.getDimensionId(),Vec3.create(player.getRotation().x,1,player.getRotation().y));
+                            for (const _player of bedrockServer.serverInstance.getPlayers()) {
+                                if(_player.getDimensionId() == player.getDimensionId()){
+                                    _player.playSound("block.composter.empty", {x:Math.floor(pos.x),y:Math.floor(pos.y), z:Math.floor(pos.z)},100,0.5)
+                                    _player.playSound("block.composter.empty", {x:Math.floor(pos.x),y:Math.floor(i), z:Math.floor(pos.z)},100,0.5)
+                                }
                             }
+                            break;
                         }
-                        break;
                     }
                 }
             }
