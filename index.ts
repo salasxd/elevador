@@ -1,12 +1,12 @@
 import { events } from "bdsx/event";
 
-const version = "v1.1.0";
+const version = "v1.2.0";
 
 console.log('[Elevador] Iniciando'.magenta);
 // before BDS launching
 
 events.serverOpen.on(()=>{
-    require('./elevador')
+    require('./elevador');
     console.log('[Elevador] '.magenta + version.green);
 });
 
